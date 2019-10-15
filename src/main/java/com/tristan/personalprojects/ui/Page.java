@@ -1,6 +1,8 @@
 package com.tristan.personalprojects.ui;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
@@ -24,9 +26,19 @@ public class Page extends VBox {
      * Create and set up a new page.
      */
     public Page(){
+        setupThis();
         setupPageLabel();
         setupContextMenu();
         VBox.setVgrow(this, Priority.ALWAYS);
+    }
+
+    /**
+     * Set up this page.
+     */
+    private void setupThis(){
+        this.setPadding(new Insets(20, 20, 20, 20));
+        this.setSpacing(20);
+        this.setStyle("-fx-background-color: blue;");
     }
 
     /**
@@ -48,15 +60,13 @@ public class Page extends VBox {
 
         contents = new LinkedList<>();
 
-        MenuItem addContent = new MenuItem("Add");
-        addContent.setOnAction(e -> System.out.println("Add!"));
+        MenuItem addTextArea = new MenuItem("Text Area");
+        addTextArea.setOnAction(e -> addContent(new TextAreaContent()));
 
-        MenuItem removeContent = new MenuItem("Remove");
-        removeContent.setOnAction(e -> System.out.println("Remove!"));
+        Menu addContent = new Menu("Add");
+        addContent.getItems().add(addTextArea);
 
-
-        ContextMenu contextMenu = new ContextMenu(addContent, removeContent);
-
+        ContextMenu contextMenu = new ContextMenu(addContent);
 
         this.setOnMouseClicked(e ->{
             if (e.getButton().equals(MouseButton.SECONDARY)){
@@ -90,6 +100,12 @@ public class Page extends VBox {
      * @return a string of all of the content in the page.
      */
     public String toString(){
-        return pageLabel.getText();
+        String result = pageLabel.getText() + "\n";
+
+        for(Content c : contents){
+            result = pageLabel.getText() + "\n";
+        }
+
+        return result;
     }
 }
