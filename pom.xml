@@ -31,7 +31,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>com.tristan.personalprojects.App</mainClass>
+                    <mainClass>com.tristan.personalprojects.ui.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
